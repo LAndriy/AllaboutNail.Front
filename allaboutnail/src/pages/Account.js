@@ -1,5 +1,5 @@
 import React from 'react';
-import { Typography, Box } from '@mui/material';
+import { Typography, Box, Button } from '@mui/material';
 
 function Account() {
     // Tymczasowe dane użytkownika
@@ -11,12 +11,18 @@ function Account() {
 
     return (
         <Box>
-            <Typography variant="h4">Moje konto</Typography>
+            <Typography  mt={4} variant="h4" sx={{ fontWeight: 'bold', color: '#555' }}>Moje konto</Typography>
             <Box mt={2}>
                 <Typography><strong>Imię:</strong> {user.firstName}</Typography>
                 <Typography><strong>Nazwisko:</strong> {user.lastName}</Typography>
                 <Typography><strong>Email:</strong> {user.email}</Typography>
             </Box>
+
+            <Button
+            variant="contained"
+            color="error">
+                Wyloguj się
+            </Button>
         </Box>
     );
 }

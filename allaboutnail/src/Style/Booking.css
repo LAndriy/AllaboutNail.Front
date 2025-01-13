@@ -1,0 +1,23 @@
+.form-container{
+    text-align: center;
+}
+.input {
+    width: 200px;
+    height: 50px;
+    text-align: left;
+}
+
+.input .MuiInputBase-root {
+    height: 40px;
+}
+
+.buton{
+    height: 40px;
+    background-color: #61535a !important;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+.buton:hover {
+    background-color: #3f353b;
+}

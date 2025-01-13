@@ -2,16 +2,19 @@ import React, { useState } from 'react';
 import { AppBar, Toolbar, Typography, Button, IconButton, Drawer, List, ListItem, ListItemText } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import { Link } from 'react-router-dom';
+import '../Style/Navbar.css';
 
 function Navbar() {
     const [drawerOpen, setDrawerOpen] = useState(false);
-    const isAuthenticated = true; // Placeholder, podmień na logikę autoryzacji
+    const isAuthenticated = true;
     const menuItems = [
         { text: 'O nas', path: '/' },
         { text: 'Usługi', path: '/services' },
         { text: 'Galeria', path: '/gallery' },
         { text: 'Rezerwacja', path: '/booking' },
         { text: 'Kontakt', path: '/contact' },
+        { text: 'Zaloguj się', path: '/login' },
+        { text: 'Zarejestruj się', path: '/register' },
     ];
 
     const userMenuItems = [
@@ -50,7 +53,7 @@ function Navbar() {
 
     return (
         <>
-            <AppBar position="static">
+            <AppBar position="static" className='Navbar'>
                 <Toolbar>
                     <IconButton
                         edge="start"

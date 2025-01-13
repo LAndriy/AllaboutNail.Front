@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './Calendar.css';
+import '../Style/Calendar.css';
 
 const daysOfWeek = ['Pon.', 'Wto.', 'Śro.', 'Czw.', 'Pią.', 'Sob.'];
 const monthNames = [

@@ -10,7 +10,7 @@ function VisitHistory() {
 
     return (
         <Box>
-            <Typography variant="h4">Historia wizyt</Typography>
+            <Typography  mt={4} variant="h4" sx={{ fontWeight: 'bold', color: '#555' }}>Historia wizyt</Typography>
             <Box mt={2}>
                 <List>
                     {reservations.map((reservation) => (
