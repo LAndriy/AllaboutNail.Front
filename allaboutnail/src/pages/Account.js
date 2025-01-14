@@ -1,14 +1,22 @@
 import React from 'react';
 import { Typography, Box, Button } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
 function Account() {
     // Tymczasowe dane użytkownika
+    const navigate = useNavigate();
     const user = {
         firstName: 'Jan',
         lastName: 'Kowalski',
         email: 'jan.kowalski@example.com',
     };
 
+        function logout() {
+            localStorage.removeItem('token');
+            alert('Wylogowano pomyślnie!');
+            navigate('/');
+        }
+    
     return (
         <Box>
             <Typography  mt={4} variant="h4" sx={{ fontWeight: 'bold', color: '#555' }}>Moje konto</Typography>
@@ -19,6 +27,7 @@ function Account() {
             </Box>
 
             <Button
+            onClick={logout}
             variant="contained"
             color="error">
                 Wyloguj się

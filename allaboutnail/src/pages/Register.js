@@ -1,5 +1,7 @@
 import React from "react";
 import "../Style/Auth.css";
+import FacebookIcon from '@mui/icons-material/Facebook';
+import GoogleIcon from '@mui/icons-material/Google';
 
 const Register = () => {
   const handleRegister = (e) => {
@@ -50,16 +52,19 @@ const Register = () => {
       <div className="logwith">
         <ul>
           <li>
-            <a href="#" className="form_google">
-              <span>Kontynuuj z Google</span>
-            </a>
+          <button className="icon-btn">
+            <GoogleIcon className="google-icon" fontSize="medium"/>
+              Kontynuuj z Google
+            </button>
           </li>
           <li>
-            <a href="#" className="form_facebook">
-              <span>Kontynuuj z Facebook</span>
-            </a>
+            <button className="icon-btn">
+            <FacebookIcon className="facebook-icon" fontSize="medium"/>
+              Kontynuuj z Facebook
+            </button>
           </li>
         </ul>
+        <p className="link">Posiadasz już konto? <a className="link" href="/login">Zaloguj się</a></p>
       </div>
     </div>
   );

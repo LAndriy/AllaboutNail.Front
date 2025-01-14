@@ -35,7 +35,7 @@ const Contact = () => {
             </div>
             <div className="contact-links">
                 <a
-                    href="#"
+                    href="https://www.instagram.com/allabout.nail?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
                     target="_blank"
                     rel="noopener noreferrer"
                     className="icon-button facebook-icon"
@@ -43,7 +43,7 @@ const Contact = () => {
                     <FacebookIcon fontSize="large" />
                 </a>
                 <a
-                    href="#"
+                    href="https://www.instagram.com/allabout.nail?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
                     target="_blank"
                     rel="noopener noreferrer"
                     className="icon-button instagram-icon"
