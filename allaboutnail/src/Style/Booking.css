@@ -19,5 +19,5 @@
 }
 
 .buton:hover {
-    background-color: #3f353b;
+    background-color: #3f353b !important;
 }

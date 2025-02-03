@@ -2,7 +2,6 @@ import React from 'react';
 import { Typography, Box, List, ListItem, ListItemText } from '@mui/material';
 
 function VisitHistory() {
-    // Tymczasowe dane rezerwacji
     const reservations = [
         { id: 1, date: '2025-01-15', time: '10:00', employee: 'Anna' },
         { id: 2, date: '2025-01-20', time: '14:30', employee: 'Ewa' },

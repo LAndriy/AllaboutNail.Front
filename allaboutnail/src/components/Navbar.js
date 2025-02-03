@@ -1,25 +1,46 @@
 import React, { useState } from 'react';
-import { AppBar, Toolbar, Typography, Button, IconButton, Drawer, List, ListItem, ListItemText } from '@mui/material';
+import { Link, useNavigate } from 'react-router-dom';
 import MenuIcon from '@mui/icons-material/Menu';
-import { Link } from 'react-router-dom';
+import AccountCircle from '@mui/icons-material/AccountCircle';
+import { 
+    AppBar, 
+    Toolbar, 
+    IconButton, 
+    Typography, 
+    Button, 
+    Drawer, 
+    Menu, 
+    MenuItem,
+    List,
+    ListItem,
+    ListItemText
+} from '@mui/material';
 import '../Style/Navbar.css';
+import { useAuth } from '../context/AuthContext';
 
 function Navbar() {
+    const navigate = useNavigate();
     const [drawerOpen, setDrawerOpen] = useState(false);
-    const isAuthenticated = true;
+    const [anchorEl, setAnchorEl] = useState(null);
+    const { isAuthenticated, logout, user } = useAuth();
+
     const menuItems = [
         { text: 'O nas', path: '/' },
-        { text: 'Usługi', path: '/services' },
+        { text: 'Uslugi', path: '/Services' },
         { text: 'Galeria', path: '/gallery' },
         { text: 'Rezerwacja', path: '/booking' },
         { text: 'Kontakt', path: '/contact' },
+    ];
+    
+    const authMenuItems = [
         { text: 'Zaloguj się', path: '/login' },
         { text: 'Zarejestruj się', path: '/register' },
     ];
-
+    
     const userMenuItems = [
         { text: 'Moje konto', path: '/account' },
-        { text: 'Historia wizyt', path: '/history' },
+        ...(user?.roles?.includes('Admin') ? [{ text: 'Panel Administracyjny', path: '/admin' }] : []),
+        //{ text: 'Historia wizyt', path: '/history' },
     ];
 
     const toggleDrawer = (open) => (event) => {
@@ -27,6 +48,20 @@ function Navbar() {
             return;
         }
         setDrawerOpen(open);
+    };
+
+    const handleMenu = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
+
+    const handleLogout = async () => {
+        await logout();
+        handleClose();
+        navigate('/');
     };
 
     const drawer = (
@@ -60,7 +95,7 @@ function Navbar() {
                         color="inherit"
                         aria-label="menu"
                         onClick={toggleDrawer(true)}
-                        sx={{ display: { xs: 'block', sm: 'none' } }} // Widoczne tylko na małych ekranach
+                        sx={{ display: { xs: 'block', sm: 'none' } }}
                     >
                         <MenuIcon />
                     </IconButton>
@@ -68,29 +103,57 @@ function Navbar() {
                         AllAboutNail
                     </Typography>
                     <div style={{ display: 'flex', flexGrow: 1, justifyContent: 'flex-end' }}>
-                        {menuItems.map((item) => (
-                            <Button
-                                color="inherit"
-                                component={Link}
-                                to={item.path}
-                                key={item.text}
-                                sx={{ display: { xs: 'none', sm: 'inline-flex' } }} // Widoczne na ekranach sm i większych
-                            >
-                                {item.text}
-                            </Button>
-                        ))}
-                        {isAuthenticated &&
-                            userMenuItems.map((item) => (
-                                <Button
-                                    color="inherit"
-                                    component={Link}
-                                    to={item.path}
-                                    key={item.text}
-                                    sx={{ display: { xs: 'none', sm: 'inline-flex' } }} // Widoczne na ekranach sm i większych
-                                >
-                                    {item.text}
-                                </Button>
-                            ))}
+                    {menuItems.map((item) => (
+    <Button
+        key={item.text}
+        component={Link}
+        to={item.path}
+        sx={{ color: 'white', display: 'block' }}
+    >
+        {item.text}
+    </Button>
+))}
+
+{!isAuthenticated && authMenuItems.map((item) => (
+    <Button
+        key={item.text}
+        component={Link}
+        to={item.path}
+        sx={{ color: 'white', display: 'block' }}
+    >
+        {item.text}
+    </Button>
+))}
+
+{isAuthenticated && (
+    <>
+        <IconButton
+        
+            onClick={handleMenu}
+            color="inherit"
+        >
+            <AccountCircle />Moje konto
+        </IconButton>
+        <Menu
+            anchorEl={anchorEl}
+            open={Boolean(anchorEl)}
+            onClose={handleClose}
+        >
+            {userMenuItems.map((item) => (
+                <MenuItem
+                    key={item.text}
+                    onClick={() => {
+                        handleClose();
+                        navigate(item.path);
+                    }}
+                >
+                    {item.text}
+                </MenuItem>
+            ))}
+            <MenuItem onClick={handleLogout}>Wyloguj się</MenuItem>
+        </Menu>
+    </>
+)}
                     </div>
                 </Toolbar>
             </AppBar>

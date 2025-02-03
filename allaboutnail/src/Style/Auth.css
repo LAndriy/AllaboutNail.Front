@@ -34,9 +34,9 @@
 .auth-form input:focus::placeholder{
     opacity: 0;
 }
-.auth-form button {
+#auth-form button  {
     padding: 10px 15px;
-    background-color: #61535a;
+    background-color: #61535a !important;
     color: #ffffff;
     border: none;
     border-radius: 5px;
